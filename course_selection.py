@@ -54,7 +54,7 @@ class TKUCourseSelector:
 
         login_resp = self.session.post(
             'https://www.ais.tku.edu.tw/EleCos/login.aspx?ReturnUrl=%2felecos%2f', data=post_data)
-        assert login_resp.history[0].status_code == 302, "Login failed QWQ"
+        assert login_resp.history and login_resp.history[0].status_code == 302, "Login failed QWQ"
 
         self.last_page = login_resp
         return login_resp
