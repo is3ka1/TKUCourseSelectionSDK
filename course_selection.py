@@ -83,8 +83,10 @@ class TKUCourseSelector:
 
 
 if __name__ == "__main__":
+    from getpass import getpass
+
     course_selector = TKUCourseSelector()
-    resp = course_selector.login('Student Number', 'Password')
-    info_resp = course_selector.course_info('Course ID')
-    add_resp = course_selector.add_course('Course ID')
-    del_resp = course_selector.del_course('Course ID')
+    resp = course_selector.login(input('Student Number: '), getpass())
+    info_resp = course_selector.course_info(input('Course ID: '))
+    add_resp = course_selector.add_course(input('Course ID: '))
+    del_resp = course_selector.del_course(input('Course ID: '))
