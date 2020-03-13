@@ -38,7 +38,7 @@ class TKUCourseSelector:
             for prop in ('__VIEWSTATE', '__VIEWSTATEGENERATOR', '__EVENTVALIDATION')
         }
 
-    def login(self, student_num: str, passwd: str):
+    def login(self, student_num: str, passwd: str) -> requests.Response:
         login_page = self.session.get(
             'https://www.ais.tku.edu.tw/EleCos/login.aspx?ReturnUrl=%2felecos%2f')
         captcha_page = self.session.post(
@@ -59,7 +59,7 @@ class TKUCourseSelector:
         self.last_page = login_resp
         return login_resp
 
-    def _action(self, course_id: str, action: str):
+    def _action(self, course_id: str, action: str) -> requests.Response:
         post_data = self.get_hidden_arg(self.last_page.text)
         post_data.update({
             '__EVENTTARGET': action,
@@ -72,13 +72,13 @@ class TKUCourseSelector:
         
         return self.last_page
 
-    def course_info(self, course_id: str):
+    def course_info(self, course_id: str) -> requests.Response:
         return self._action(course_id, 'btnOffer')
 
-    def add_course(self, course_id: str):
+    def add_course(self, course_id: str) -> requests.Response:
         return self._action(course_id, 'btnAdd')
 
-    def del_course(self, course_id: str):
+    def del_course(self, course_id: str) -> requests.Response:
         return self._action(course_id, 'btnDel')
 
 
