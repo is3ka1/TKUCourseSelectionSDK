@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 requests = "*"
 parsel = "*"
+click = "*"
 
 [requires]
 python_version = "3.7"
