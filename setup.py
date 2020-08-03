@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="TKUCourseSelectionSDK",
-    version="0.0.1",
+    version="0.0.2",
     author="isekai",
     description="Tools for auto selecting course of TKU",
     url="https://github.com/Isekai-Seikatsu/TKUCourseSelectionSDK",
