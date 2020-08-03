@@ -1,9 +1,11 @@
 import re
+from datetime import datetime
 
 import click
 
 from course_selection import TKUCourseSelector
 from data_parsing import parse_data
+
 
 @click.command()
 @click.option('--studid', prompt='Student ID', envvar='STUDID')
