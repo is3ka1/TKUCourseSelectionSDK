@@ -10,8 +10,13 @@ from data_parsing import parse_data
 @click.option('--password', prompt=True, hide_input=True, envvar='PASSWD')
 @click.argument('script', type=click.File('r'))
 def cli(studid, password, script):
-    course_selector = TKUCourseSelector()
-    course_selector.login(studid, password)
+    while True:
+        try:
+            course_selector = TKUCourseSelector()
+            course_selector.login(studid, password)
+        except AssertionError as error:
+            click.echo(f'[{datetime.now().isoformat()}] {error}')
+
     command_pattern = re.compile('(?P<operation>[+-]{1}) *(?P<course_id>\d{4})')
 
     for command in script:
@@ -25,7 +30,11 @@ def cli(studid, password, script):
             elif operation == '-':
                 func = course_selector.del_course
 
-            resp = func(course_id)
+            try:
+                resp = func(course_id)
+            except AssertionError as error:
+                click.echo(f'[{datetime.now().isoformat()}] {error}')
+
             click.echo(f"course_id: {course_id}\nmsg: {parse_data(resp.text)['msg']}\n")
 
         else:
