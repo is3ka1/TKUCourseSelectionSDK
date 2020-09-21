@@ -17,7 +17,7 @@ def cli(studid, password, script):
         try:
             course_selector = TKUCourseSelector()
             course_selector.login(studid, password)
-            sequence_add(script)
+            sequence_add(course_selector, script)
         except AssertionError as error:
             click.echo(f'[{datetime.now().isoformat()}] {error}')
 
@@ -25,7 +25,7 @@ def cli(studid, password, script):
 command_pattern = re.compile('(?P<operation>[+-]{1}) *(?P<course_id>\d{4})')
 
 
-def sequence_add(script):
+def sequence_add(course_selector, script):
     for command in script:
         match = command_pattern.match(command)
         if match:
