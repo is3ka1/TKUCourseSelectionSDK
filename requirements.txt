@@ -1,0 +1,12 @@
+-i https://pypi.org/simple
+certifi==2020.6.20
+chardet==3.0.4
+click==7.1.2
+cssselect==1.1.0
+idna==2.10
+lxml==4.5.2
+parsel==1.6.0
+requests==2.24.0
+six==1.15.0
+urllib3==1.25.10
+w3lib==1.22.0
