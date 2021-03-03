@@ -1,3 +1,4 @@
+import functools
 import re
 
 import requests
@@ -21,6 +22,8 @@ class TKUCourseSelector:
 
     def __init__(self):
         self.session = requests.Session()
+        # Global timeout
+        self.session.request = functools.partial(self.session.request, timeout=30)
         self.session.headers['User-Agent'] = (
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:73.0) Gecko/20100101 Firefox/73.0')
         self.last_page = None
